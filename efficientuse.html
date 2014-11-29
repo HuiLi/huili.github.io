@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>有效使用Rtree | SQlite源码分析-rtree</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.3.4">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="./r/README.html" />
+    
+    
+    <link rel="prev" href="./rtree/round.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="gitbook/style.css">
+
+
+        
+    <div class="book" data-level="4" data-basepath="." data-revision="1417247497194">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         首页
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="gs.html">
+            
+                
+                    <a href="./gs.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         概述
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="rtree/README.html">
+            
+                
+                    <a href="./rtree/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         编译Rtree模块
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="usertree.html">
+            
+                
+                    <a href="./usertree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         使用Rtree模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="rtree/createRtree.html">
+            
+                
+                    <a href="./rtree/createRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         创建一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="rtree/getRtree.html">
+            
+                
+                    <a href="./rtree/getRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         获取一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="rtree/queryRtree.html">
+            
+                
+                    <a href="./rtree/queryRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         查询一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="rtree/round.html">
+            
+                
+                    <a href="./rtree/round.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         舍入偏差
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="4" data-path="efficientuse.html">
+            
+                
+                    <a href="./efficientuse.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         有效使用Rtree
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="r/README.html">
+            
+                
+                    <a href="./r/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         整型R树
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="tailorrtree.html">
+            
+                
+                    <a href="./tailorrtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         定制R树查询
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="r/xgeom.html">
+            
+                
+                    <a href="./r/xgeom.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         旧版本xGeom回调
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="r/xqueryfunc.html">
+            
+                
+                    <a href="./r/xqueryfunc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         全新xQueryFunc回调
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3" data-path="r/tailor.html">
+            
+                
+                    <a href="./r/tailor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         定制查询注意事项
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >SQlite源码分析-rtree</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_2">
+                    
+                        <h1 id="40-rtree">4.0 有效使用Rtree</h1>
+<p>RTree索引存放的信息只有对象的ID和对象的边界大小。附加的信息需要存放在其他的表上，并通过主键与Rtree索引关联。对于以上例子，可以通过以下方式创建一个辅助表：
+CREATE TABLE demo_data(
+  id INTEGER PRIMARY KEY,  -- primary key
+  objname TEXT,            -- name of the object
+  objtype TEXT,            -- object type
+  boundary BLOB            -- detailed boundary of object
+);
+在这个例子中,demo_data.boundary属性用来存储精确的二进制坐标数据。R树索引只保存了对象区域矩形的轴对齐边界线。R树只保存了对象边界区域的近似值。所以通常情况下，R树索引用来缩小候选值的范围。然后对每个候选值进行详细的验证是否满足条件。
+关键：一个R树索引并不能提供准确的数据，仅仅只是用来降低搜索范围。建立demo_data.boundary属性来保存对象的准确坐标值需要用到sqlite3_create_function()接口来创建自定义contained_in和overlaps函数来验证“包含”和“重叠”。可以认定“contained_in”和“overlaps”函数是查询速度较慢的函数所以不会经常调用。因此，查询包含在the North Carolina 12th District区域的所有记录，可以这样做：
+SELECT objname FROM demo_data, demo_index
+ WHERE demo_data.id=demo_index.id
+   AND contained_in(demo_data.boundary, :boundary)
+   AND minX&gt;=-81.0 AND maxX&lt;=-79.6
+   AND minY&gt;=35.0 AND maxY&lt;=36.2;
+在上面查询中，可以假定the 12TH district区域的准确坐标绑定在boundary属性中。
+上述查询是怎样进行的：Rtree运行在外层循环中，找到所有经度在-81..-79.6，纬度在35.0..36.2中的所有记录。对于每个搜索到的对象，SQLITE在demo_data表中找到与之对应的记录并找到对应的属性值，用contained_in函数验证是否满足条件。如果满足则返回。
+下面查询语句不使用R树索引会返回同样的结果：
+SELECT objname FROM demo_data
+ WHERE contained_in(demo_data.boundary, :boundary);
+后面查询的问题在于函数contained_in会应用在demo_data所有数百万的记录上。R树索引的运用大大降低了函数contained_in的调用次数，R树索引并没有找出准确值，但是它大大降低了搜索空间。</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./rtree/round.html" class="navigation navigation-prev " aria-label="Previous page: 舍入偏差"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./r/README.html" class="navigation navigation-next " aria-label="Next page: 整型R树"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>使用Rtree模块 | SQlite源码分析-rtree</title>
+        <title>整体优化 | SQlite源码分析-rtree</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.3.4">
@@ -13,15 +13,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
         
     
     
-    <link rel="next" href="./rtree/createRtree.html" />
     
-    
-    <link rel="prev" href="./rtree/README.html" />
+    <link rel="prev" href="../rstar/local.html" />
     
 
         
@@ -29,11 +27,11 @@
     <body>
         
         
-<link rel="stylesheet" href="gitbook/style.css">
+<link rel="stylesheet" href="../gitbook/style.css">
 
 
         
-    <div class="book" data-level="3" data-basepath="." data-revision="1417247497194">
+    <div class="book" data-level="9.2" data-basepath=".." data-revision="1417760682320">
     
 
 <div class="book-summary">
@@ -54,7 +52,7 @@
         <li class="chapter " data-level="0" data-path="index.html">
             
                 
-                    <a href="./index.html">
+                    <a href="../index.html">
                         <i class="fa fa-check"></i>
                         
                          首页
@@ -68,7 +66,7 @@
         <li class="chapter " data-level="1" data-path="gs.html">
             
                 
-                    <a href="./gs.html">
+                    <a href="../gs.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -84,7 +82,7 @@
         <li class="chapter " data-level="2" data-path="rtree/README.html">
             
                 
-                    <a href="./rtree/README.html">
+                    <a href="../rtree/README.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.</b>
@@ -97,10 +95,10 @@
         </li>
     
         
-        <li class="chapter active" data-level="3" data-path="usertree.html">
+        <li class="chapter " data-level="3" data-path="rtree/usertree.html">
             
                 
-                    <a href="./usertree.html">
+                    <a href="../rtree/usertree.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.</b>
@@ -117,7 +115,7 @@
         <li class="chapter " data-level="3.1" data-path="rtree/createRtree.html">
             
                 
-                    <a href="./rtree/createRtree.html">
+                    <a href="../rtree/createRtree.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.1.</b>
@@ -133,7 +131,7 @@
         <li class="chapter " data-level="3.2" data-path="rtree/getRtree.html">
             
                 
-                    <a href="./rtree/getRtree.html">
+                    <a href="../rtree/getRtree.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.2.</b>
@@ -149,7 +147,7 @@
         <li class="chapter " data-level="3.3" data-path="rtree/queryRtree.html">
             
                 
-                    <a href="./rtree/queryRtree.html">
+                    <a href="../rtree/queryRtree.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.3.</b>
@@ -165,7 +163,7 @@
         <li class="chapter " data-level="3.4" data-path="rtree/round.html">
             
                 
-                    <a href="./rtree/round.html">
+                    <a href="../rtree/round.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.4.</b>
@@ -183,10 +181,10 @@
         </li>
     
         
-        <li class="chapter " data-level="4" data-path="efficientuse.html">
+        <li class="chapter " data-level="4" data-path="rtree/efficientuse.html">
             
                 
-                    <a href="./efficientuse.html">
+                    <a href="../rtree/efficientuse.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.</b>
@@ -202,7 +200,7 @@
         <li class="chapter " data-level="5" data-path="r/README.html">
             
                 
-                    <a href="./r/README.html">
+                    <a href="../r/README.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.</b>
@@ -215,10 +213,10 @@
         </li>
     
         
-        <li class="chapter " data-level="6" data-path="tailorrtree.html">
+        <li class="chapter " data-level="6" data-path="r/tailorrtree.html">
             
                 
-                    <a href="./tailorrtree.html">
+                    <a href="../r/tailorrtree.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.</b>
@@ -235,7 +233,7 @@
         <li class="chapter " data-level="6.1" data-path="r/xgeom.html">
             
                 
-                    <a href="./r/xgeom.html">
+                    <a href="../r/xgeom.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.1.</b>
@@ -251,7 +249,7 @@
         <li class="chapter " data-level="6.2" data-path="r/xqueryfunc.html">
             
                 
-                    <a href="./r/xqueryfunc.html">
+                    <a href="../r/xqueryfunc.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.2.</b>
@@ -267,12 +265,238 @@
         <li class="chapter " data-level="6.3" data-path="r/tailor.html">
             
                 
-                    <a href="./r/tailor.html">
+                    <a href="../r/tailor.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.3.</b>
                         
                          定制查询注意事项
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="sqliter/README.html">
+            
+                
+                    <a href="../sqliter/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         SQLiteR树结构
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="sqliter/NodeStruct.html">
+            
+                
+                    <a href="../sqliter/NodeStruct.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         结点结构
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="sqliter/CellStruct.html">
+            
+                
+                    <a href="../sqliter/CellStruct.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         结点单元结构
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="rr/README.html">
+            
+                
+                    <a href="../rr/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         R树特点及算法实现
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" data-path="rr/Searing.html">
+            
+                
+                    <a href="../rr/Searing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                         查找
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2" data-path="rr/Insertion.html">
+            
+                
+                    <a href="../rr/Insertion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                         插入
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.3" data-path="rr/Deletion.html">
+            
+                
+                    <a href="../rr/Deletion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                         删除
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.4" data-path="rr/Update.html">
+            
+                
+                    <a href="../rr/Update.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                         更新
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.5" data-path="rr/QSplit.html">
+            
+                
+                    <a href="../rr/QSplit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                         平方分裂
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.6" data-path="rr/LinearSplit.html">
+            
+                
+                    <a href="../rr/LinearSplit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                         线性分裂
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="rstar/README.html">
+            
+                
+                    <a href="../rstar/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         R*树优化
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="rstar/local.html">
+            
+                
+                    <a href="../rstar/local.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         局部优化
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="9.2" data-path="rstar/all.html">
+            
+                
+                    <a href="../rstar/all.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         整体优化
                     </a>
                 
             
@@ -365,7 +589,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >SQlite源码分析-rtree</a>
+        <a href="../" >SQlite源码分析-rtree</a>
     </h1>
 </div>
 
@@ -373,11 +597,28 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_20">
+                    <section class="normal" id="section-gitbook_16">
                     
-                        <h1 id="30-rtree">3.0 使用Rtree模块</h1>
-<p>SQLite Rtree模块是用虚表实现的。每个Rtree索引都是一个3-11奇数列的虚表。第一列一般为64bit有符号整型主键。其他列各自组成一对，每对代表一维，包含该维的最大或最小值。因此，一维索引有三列，二维有5列，三维有7列…..五维Rtree有11列。SQLite最多支持5维Rtree索引。
-SQLite Rtree第一列应该为一个整型主键。rtree虚表中最大/最小值对存放32bit float数，而对于rtree_i32虚表则存放32bit有符号整型数。区别于其他SQLite表可以存放各种类型的数据，R*tree虚表执行严格的存储类型定义。如果尝试向第一列插入一个非整型数，或者向其他列插入一个非数值型数，都会返回一个错误。</p>
+                        <h1 id="">整体优化</h1>
+<p>采用强制重新插入算法使树的结构优化。</p>
+<h2 id="">相关函数</h2>
+<p>函数Reinsert用于强制重插入</p>
+<pre><code>static int Reinsert(
+  Rtree *pRtree,
+  RtreeNode *pNode,
+  RtreeCell *pCell,
+  int iHeight
+)
+</code></pre><p>函数SortByDistance用于根据记录与结点边界框的中心距离大小将记录排序</p>
+<pre><code>static void SortByDistance(
+  int *aIdx,
+  int nIdx,
+  RtreeDValue *aDistance,
+  int *aSpare
+)
+</code></pre><p>其中,aIdx表示排序记录的下标记录集,nIdx表示记录的下标,aSpare表示临时排序空间。aDistance用于存放每个记录计算后的距离集.</p>
+<h2 id="">相关流程图</h2>
+<p><img src="images/all.png"></p>
 
                     
                     </section>
@@ -388,27 +629,25 @@ SQLite Rtree第一列应该为一个整型主键。rtree虚表中最大/最小�
         </div>
 
         
-        <a href="./rtree/README.html" class="navigation navigation-prev " aria-label="Previous page: 编译Rtree模块"><i class="fa fa-angle-left"></i></a>
+        <a href="../rstar/local.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 局部优化"><i class="fa fa-angle-left"></i></a>
         
-        
-        <a href="./rtree/createRtree.html" class="navigation navigation-next " aria-label="Next page: 创建一个Rtree索引"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-<script src="gitbook/app.js"></script>
+<script src="../gitbook/app.js"></script>
 
     
     <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
     
 
     
-    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>

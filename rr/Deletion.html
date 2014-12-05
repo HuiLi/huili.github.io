@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>查询一个Rtree索引 | SQlite源码分析-rtree</title>
+        <title>删除 | SQlite源码分析-rtree</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.3.4">
@@ -18,10 +18,10 @@
         
     
     
-    <link rel="next" href="../rtree/round.html" />
+    <link rel="next" href="../rr/Update.html" />
     
     
-    <link rel="prev" href="../rtree/getRtree.html" />
+    <link rel="prev" href="../rr/Insertion.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="1417760682320">
+    <div class="book" data-level="8.3" data-basepath=".." data-revision="1417760682320">
     
 
 <div class="book-summary">
@@ -146,7 +146,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.3" data-path="rtree/queryRtree.html">
+        <li class="chapter " data-level="3.3" data-path="rtree/queryRtree.html">
             
                 
                     <a href="../rtree/queryRtree.html">
@@ -388,7 +388,7 @@
         </li>
     
         
-        <li class="chapter " data-level="8.3" data-path="rr/Deletion.html">
+        <li class="chapter active" data-level="8.3" data-path="rr/Deletion.html">
             
                 
                     <a href="../rr/Deletion.html">
@@ -599,23 +599,41 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_22">
+                    <section class="normal" id="section-gitbook_8">
                     
-                        <h1 id="33rtree">3.3查询一个R*Tree索引</h1>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTree索引不利于任何有效的查询。但是RTree的实现是为了两种类型的查询更加快捷有效。第一，有效的查询主键：</p>
-<pre><code>SELECT * FROM demo_index WHERE id=1;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然，一个普通的SQLite表也可以有效的查询整型主键，所以在这以前这不是问题。使用R*Tree的真正原因是可以有效的处理范围查询。找到所有包含在Charlotte，North Carolina内的邻近区域索引：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE minX&gt;=-81.08 AND maxX&lt;=-80.58
-   AND minY&gt;=35.00  AND maxY&lt;=35.44;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尽管R*Tree包含了数百万的记录，上述查询也可以快速定位到id 1记录。这是一个包含在区域之内的查询实例。Rtree同样支持重叠区域查询。比如，找到所有与Charlotte区域有重叠区域的查询：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE maxX&gt;=-81.08 AND minX&lt;=-80.58
- AND maxY&gt;=35.00  AND minY&lt;=35.44;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个查询会找到记录1（the SQLite Office）包含在查询的框架范围中，和the 12th congressional District未包含在查询的框架范围中但和查询范围有重叠区域。没有必要为了让查询更加有效而给所有的坐标都加上约束。比如，查询所有与35th区域有重叠区域的记录：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE maxY&gt;=35.0  AND minY&lt;=35.0;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是，一般来说，R*tree约束越多，查询区域的大小越精确，查询速度越快。</p>
+                        <h1 id="">删除</h1>
+<h2 id="">相关函数</h2>
+<p>函数DeleteCell用于删除记录</p>
+<pre><code>static int deleteCell(
+  Rtree *pRtree,
+  RtreeNode *pNode,
+  int iCell,
+  int iHeight
+)
+</code></pre><p>函数nodeDeleteCell被DeleteCell调用用于删除数据</p>
+<pre><code>static void nodeDeleteCell(
+  Rtree *pRtree,
+  RtreeNode *pNode,
+  int iCell
+)
+</code></pre><p>函数fixLeafParent用于父结点被删除的结点,重新分配父结点</p>
+<pre><code>static int fixLeafParent(
+  Rtree *pRtree,
+  RtreeNode *pLeaf
+)
+</code></pre><p>函数fixBoundingBox用于调整结点边框</p>
+<pre><code>static int fixBoundingBox(
+  Rtree *pRtree,
+  RtreeNode *pNode
+)
+</code></pre><p>函数removeNode用于删除结点</p>
+<pre><code>static int removeNode(
+  Rtree *pRtree,
+  RtreeNode *pNode,
+  int iHeight
+)
+</code></pre><h2 id="">相关流程图</h2>
+<p><img src="images/Deletion.png"></p>
 
                     
                     </section>
@@ -626,10 +644,10 @@
         </div>
 
         
-        <a href="../rtree/getRtree.html" class="navigation navigation-prev " aria-label="Previous page: 获取一个Rtree索引"><i class="fa fa-angle-left"></i></a>
+        <a href="../rr/Insertion.html" class="navigation navigation-prev " aria-label="Previous page: 插入"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../rtree/round.html" class="navigation navigation-next " aria-label="Next page: 舍入偏差"><i class="fa fa-angle-right"></i></a>
+        <a href="../rr/Update.html" class="navigation navigation-next " aria-label="Next page: 更新"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

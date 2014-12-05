@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>查询一个Rtree索引 | SQlite源码分析-rtree</title>
+        <title>R树特点及算法实现 | SQlite源码分析-rtree</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.3.4">
@@ -18,10 +18,10 @@
         
     
     
-    <link rel="next" href="../rtree/round.html" />
+    <link rel="next" href="../rr/Searing.html" />
     
     
-    <link rel="prev" href="../rtree/getRtree.html" />
+    <link rel="prev" href="../sqliter/CellStruct.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="1417760682320">
+    <div class="book" data-level="8" data-basepath=".." data-revision="1417760682320">
     
 
 <div class="book-summary">
@@ -146,7 +146,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.3" data-path="rtree/queryRtree.html">
+        <li class="chapter " data-level="3.3" data-path="rtree/queryRtree.html">
             
                 
                     <a href="../rtree/queryRtree.html">
@@ -339,7 +339,7 @@
         </li>
     
         
-        <li class="chapter " data-level="8" data-path="rr/README.html">
+        <li class="chapter active" data-level="8" data-path="rr/README.html">
             
                 
                     <a href="../rr/README.html">
@@ -599,24 +599,35 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_22">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="33rtree">3.3查询一个R*Tree索引</h1>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTree索引不利于任何有效的查询。但是RTree的实现是为了两种类型的查询更加快捷有效。第一，有效的查询主键：</p>
-<pre><code>SELECT * FROM demo_index WHERE id=1;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当然，一个普通的SQLite表也可以有效的查询整型主键，所以在这以前这不是问题。使用R*Tree的真正原因是可以有效的处理范围查询。找到所有包含在Charlotte，North Carolina内的邻近区域索引：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE minX&gt;=-81.08 AND maxX&lt;=-80.58
-   AND minY&gt;=35.00  AND maxY&lt;=35.44;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尽管R*Tree包含了数百万的记录，上述查询也可以快速定位到id 1记录。这是一个包含在区域之内的查询实例。Rtree同样支持重叠区域查询。比如，找到所有与Charlotte区域有重叠区域的查询：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE maxX&gt;=-81.08 AND minX&lt;=-80.58
- AND maxY&gt;=35.00  AND minY&lt;=35.44;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个查询会找到记录1（the SQLite Office）包含在查询的框架范围中，和the 12th congressional District未包含在查询的框架范围中但和查询范围有重叠区域。没有必要为了让查询更加有效而给所有的坐标都加上约束。比如，查询所有与35th区域有重叠区域的记录：</p>
-<pre><code>SELECT id FROM demo_index
- WHERE maxY&gt;=35.0  AND minY&lt;=35.0;
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是，一般来说，R*tree约束越多，查询区域的大小越精确，查询速度越快。</p>
-
+                        <h1 id="r">R树</h1>
+<h2 id="r">R树结构</h2>
+<p>R树是处理多维数据的B+树的改进,是一种高度平衡的数据结构,其所有叶结点处于同一层.
+ R树的搜索码是区间的集合,一个区间是一维.可以把搜索码看成是一个被这些区间包围的方框.
+ 一个数据项的形式为</p>
+<pre><code>          &lt;n维方框I,rid&gt;
+</code></pre><p>rid标识一个对象,方框I是包含这个对象的最小方框,数据项存储在叶子结点.
+非叶子结点包含的索引项形式为</p>
+<pre><code>          &lt;n维方框I,指向子结点的指针&gt;
+</code></pre><p>此时方框I是包含所有与孩子结点相关联的所有方框的最小方框.</p>
+<h2 id="r">R树特点</h2>
+<ol>
+<li>R-树中各子树的所有空间允许重叠。</li>
+<li>若叶结点不是根结点，则每个叶结点所包含的索引记录个数介于m与M之间.</li>
+<li>若非叶结点不是根结点，则其中包含的子结点个数介于m与M之间.</li>
+<li>根结点至少有两个子结点</li>
+</ol>
+<h2 id="sqliter">SQLite中R树的虚表结构</h2>
+<p>R树是基于虚表实现的,它的数据存储在3个表中.
+3个表分别为:</p>
+<p>1.Node表存储结点信息,根结点nodeno为1</p>
+<pre><code>   (nodeno int, data BLOB)
+</code></pre><p>2.Parent表存储结点的父结点信息</p>
+<pre><code>    (nodeno int, parentnode int)
+</code></pre><p>3.Rowid表存储结点行号</p>
+<pre><code>    (rowid  int,nodeno int)
+</code></pre>
                     
                     </section>
                 
@@ -626,10 +637,10 @@
         </div>
 
         
-        <a href="../rtree/getRtree.html" class="navigation navigation-prev " aria-label="Previous page: 获取一个Rtree索引"><i class="fa fa-angle-left"></i></a>
+        <a href="../sqliter/CellStruct.html" class="navigation navigation-prev " aria-label="Previous page: 结点单元结构"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../rtree/round.html" class="navigation navigation-next " aria-label="Next page: 舍入偏差"><i class="fa fa-angle-right"></i></a>
+        <a href="../rr/Searing.html" class="navigation navigation-next " aria-label="Next page: 查找"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

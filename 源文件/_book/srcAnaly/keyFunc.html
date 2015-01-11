@@ -1,0 +1,1280 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>sqlite查询处理的关键函数 | SQlite源码分析-rtree</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.3.4">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="../srcAnaly/otherFunc.html" />
+    
+    
+    <link rel="prev" href="../srcAnaly/lowAnaly.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="4.2.1" data-basepath=".." data-revision="1420951411320">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="README3.html">
+            
+                
+                    <a href="../README3.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         数据库源码分析报告
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="README2.html">
+            
+                
+                    <a href="../README2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         小组成员分工情况
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="sqlite/README.html">
+            
+                
+                    <a href="../sqlite/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         关于SQLite
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="sqlite/sqlite.html">
+            
+                
+                    <a href="../sqlite/sqlite.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         什么是SQLite
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="sqlite/structure.html">
+            
+                
+                    <a href="../sqlite/structure.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         SQLite的体系结构
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="optimalandquery/readme.html">
+            
+                
+                    <a href="../optimalandquery/readme.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         SQLite的查询及优化
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="optimalandquery/query.html">
+            
+                
+                    <a href="../optimalandquery/query.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         在SQLite3下查询数据
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="optimalandquery/optimalquery.html">
+            
+                
+                    <a href="../optimalandquery/optimalquery.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         SQLite查询优化
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.2.1" data-path="optimalandquery/factor.html">
+            
+                
+                    <a href="../optimalandquery/factor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                         影响查询性能的因素
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2.2" data-path="optimalandquery/transcation.html">
+            
+                
+                    <a href="../optimalandquery/transcation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                         几个查询优化的转换
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2.3" data-path="optimalandquery/compress.html">
+            
+                
+                    <a href="../optimalandquery/compress.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.3.</b>
+                        
+                         子查询扁平化
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2.4" data-path="optimalandquery/link.html">
+            
+                
+                    <a href="../optimalandquery/link.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.4.</b>
+                        
+                         连接查询
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="srcAnaly/README.html">
+            
+                
+                    <a href="../srcAnaly/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         源码浅析
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="srcAnaly/selectExec.html">
+            
+                
+                    <a href="../srcAnaly/selectExec.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         简单select语句的执行过程
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="srcAnaly/lowAnaly.html">
+            
+                
+                    <a href="../srcAnaly/lowAnaly.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         浅析几个函数
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="4.2.1" data-path="srcAnaly/keyFunc.html">
+            
+                
+                    <a href="../srcAnaly/keyFunc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                         sqlite查询处理的关键函数
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3" data-path="srcAnaly/otherFunc.html">
+            
+                
+                    <a href="../srcAnaly/otherFunc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                         其它一些函数的功能
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="conclusion.html">
+            
+                
+                    <a href="../conclusion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         总结
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         首页
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="gs.html">
+            
+                
+                    <a href="../gs.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         概述
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="rtree/README.html">
+            
+                
+                    <a href="../rtree/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         编译Rtree模块
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="rtree/usertree.html">
+            
+                
+                    <a href="../rtree/usertree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         使用Rtree模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="rtree/createRtree.html">
+            
+                
+                    <a href="../rtree/createRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         创建一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" data-path="rtree/getRtree.html">
+            
+                
+                    <a href="../rtree/getRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         获取一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.3" data-path="rtree/queryRtree.html">
+            
+                
+                    <a href="../rtree/queryRtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                         查询一个Rtree索引
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.4" data-path="rtree/round.html">
+            
+                
+                    <a href="../rtree/round.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                         舍入偏差
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" data-path="rtree/efficientuse.html">
+            
+                
+                    <a href="../rtree/efficientuse.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         有效使用Rtree
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" data-path="r/README.html">
+            
+                
+                    <a href="../r/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         整型R树
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" data-path="r/tailorrtree.html">
+            
+                
+                    <a href="../r/tailorrtree.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                         定制R树查询
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="r/xgeom.html">
+            
+                
+                    <a href="../r/xgeom.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         旧版本xGeom回调
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.2" data-path="r/xqueryfunc.html">
+            
+                
+                    <a href="../r/xqueryfunc.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         全新xQueryFunc回调
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.3" data-path="r/tailor.html">
+            
+                
+                    <a href="../r/tailor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         定制查询注意事项
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13" data-path="sqliter/README.html">
+            
+                
+                    <a href="../sqliter/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                         SQLiteR树结构
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="13.1" data-path="sqliter/NodeStruct.html">
+            
+                
+                    <a href="../sqliter/NodeStruct.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         结点结构
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.2" data-path="sqliter/CellStruct.html">
+            
+                
+                    <a href="../sqliter/CellStruct.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         结点单元结构
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14" data-path="rr/README.html">
+            
+                
+                    <a href="../rr/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         R树特点及算法实现
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="14.1" data-path="rr/Searing.html">
+            
+                
+                    <a href="../rr/Searing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         查找
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.2" data-path="rr/Insertion.html">
+            
+                
+                    <a href="../rr/Insertion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         插入
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.3" data-path="rr/Deletion.html">
+            
+                
+                    <a href="../rr/Deletion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                         删除
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.4" data-path="rr/Update.html">
+            
+                
+                    <a href="../rr/Update.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.4.</b>
+                        
+                         更新
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.5" data-path="rr/QSplit.html">
+            
+                
+                    <a href="../rr/QSplit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.5.</b>
+                        
+                         平方分裂
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.6" data-path="rr/LinearSplit.html">
+            
+                
+                    <a href="../rr/LinearSplit.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.6.</b>
+                        
+                         线性分裂
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15" data-path="rstar/README.html">
+            
+                
+                    <a href="../rstar/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         R*树优化
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="15.1" data-path="rstar/local.html">
+            
+                
+                    <a href="../rstar/local.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         局部优化
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15.2" data-path="rstar/all.html">
+            
+                
+                    <a href="../rstar/all.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         整体优化
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >SQlite源码分析-rtree</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_42">
+                    
+                        <h1 id="sqlite">sqlite查询处理的关键函数</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sqlite的查询处理首先进行语法分析，语法分析最终在sqlite3SelectNew中完成；然后生成执行计划，select的执行计划在sqlite3Select中完成，该函数先对SQL语句进行语义分析，然后再进行优化，最后生成执行计划。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;语法分析的主要任务就是对用户输入的SQL语句进行语法检查，然后生成一个包含所有信息的语法树。对于SELECT语句，这个语法树最终由结构体Select表示，结构体select的具体说明如表3.1所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.1  结构体select的具体说明</strong></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pEList</td></p>
+<p><td>输出结果列的语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pSrc</td></p>
+<p><td>from子句语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pWhere</td></p>
+<p><td>where语句的语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pGroupBy</td></p>
+<p><td>group by语句的语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pHaving</td></p>
+<p><td>having语句的语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pOrderBy</td></p>
+<p><td>order by语句的语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pPrior</td></p>
+<p><td>在复合select语句之前选择</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pNext</td></p>
+<p><td>复合语句左边的下一个select</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pRightmost</td></p>
+<p><td>在复合select语句中最右边的select</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pLimit</td></p>
+<p><td>LIMIT 表达式.，NULL 意味着未使用</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pOffset</td></p>
+<p><td>OFFSET 表达式，NULL 意味着未使用</td>
+</tr></p>
+<p><tr></p>
+<p><td>iLimit, iOffset</td></p>
+<p><td>内存寄存器持有 LIMIT &amp; OFFSET 计数器</td>
+</tr></p>
+<p><tr></p>
+<p><td>addrOpenEphm</td></p>
+<p><td>与select相关的操作码OP_OpenEphem</td>
+</tr>
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select结构体需要注意几个字段，pEList输出结果列的语法树；pSrc为FROM子句语法树；pWhere为WHERE部分的语法树。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>1．sqlite3SelectNew</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select语法分析在最终在sqlite3SelectNew中完成。sqlite3SelectNew主要就是将之前得到的各个子语法树汇总到Select结构体，并根据该结构，进行接下来语义分析及生成执行计划等工作。sqlite3SelectNew的具体解释如表3.2所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.2  sqlite3SelectNew的参数及说明</strong></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>sqlite3 *db = pParse-&gt;db</td></p>
+<p><td>结构体Parse的成员db赋值给结构体sqlite3指针db</td>
+</tr></p>
+<p><tr></p>
+<p><td>sqlite3DbMallocZero(db, sizeof(*pNew) )</td></p>
+<p><td>分配和零内存，如果分配失败，使mallocFaied标志在连接指针中</td>
+</tr></p>
+<p><tr></p>
+<p><td>assert( db-&gt;mallocFailed || !pOffset || pLimit )</td></p>
+<p><td>判断分配是否失败或pOffset值为空或
+pLimit值不为空</td>
+</tr></p>
+<p><tr></p>
+<p><td>sqlite3ExprListAppend</td></p>
+<p><td>新添加的元素在表达式列表的末尾。新添加元素的地址赋给pEList。如果pList的初始数据为空，那么新建一个新的表达式列表。如果出现内存分配错误，则整个列表被释放并返回空。如果返回的是非空，则保证新的条目成功追加。</td>
+</tr></p>
+<p><tr></p>
+<p><td>clearSelect(db, pNew)</td></p>
+<p><td>删除所有选择的内容结构但不释放选择结构本身</td>
+</tr>
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;语义分析完之后生成执行计划（语法树到OPCODE），Select的执行计划在sqlite3Select中完成。其实，sqlite3Select函数先对SQL语句进行语义分析，然后再进行优化，最后生成执行计划。对于SQL语句，生成的执行计划(虚拟机opcode)大致分成5部分，前4部分都在sqlite3Select()中生成，它主要调用了以下几个函数，如图3.1所示。
+<img src="sqlite3select.jpg">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中第一部分和第二部分在sqlite3WhereBegin()中生成，第二部分即所谓的查询优化处理；第三部分在 selectInnerLoop中生成；第四部分在sqlite3WhereEnd中生成；第五部分是在sqlite3FinishCoding中完成的。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生成代码的过程是：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先获得一个vdbe，然后为from语句中的子查询生成代码，然后分别对子查询中的聚合函数，groupby，orderby，distinct等进行相应的处理，带有这些关键字与不带的处理过程有很大的不同，例如，对于groupby子句，如果有groupby子句，那么可能就需要一个分类索引来实现，因此要为其分配分类索引。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>2．sqlite3Select</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该函数为参数中给出的select语句生成代码，结果的不同取决于SelectDest 结构指向的内容，给出的参数如表3.3所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.3  sqlite3Select的参数及说明</strong></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>pDest-&gt;eDes</td></p>
+<p><td>Result</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Output</td></p>
+<p><td>为结果集中的每一行生成一个输出行(用OP_ResultRow  操作码)</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Mem</td></p>
+<p><td>仅在结果只有一列时有效在寄存器pDest-&gt;iSDParm存储第一个结果行的第一列，然后抛弃剩余的查询其目的蕴含着&quot;LIMIT 1&quot;</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Set</td></p>
+<p><td>结果必须是一列，在表pDest-&gt;iSDParm中存储结果的每一行，并作为表中的键在存储结果前申请pDest-&gt;affSdst 用来实现&quot;IN (SELECT ...)&quot;</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Union</td></p>
+<p><td>在被pDest-&gt;iSDParm 鉴定了的临时表中以键值存储结果</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Except</td></p>
+<p><td>从临时表pDest-&gt;iSDParm  中移除结果</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Table</td></p>
+<p><td>在临时表pDest-&gt;iSDParm  中存储结果这就像SRT_EphemTab  被排除，表假设已经开放</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_EphemTab</td></p>
+<p><td>生成一个临时表pDest-&gt;iSDParm  并将结果存储在其中</td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Coroutine</td></p>
+<p><td>每次调用都生成一个返回一个新行的结果co-routine。co-routine的入口点存储在寄存器pd - &gt; iSDParm </td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Exists</td></p>
+<p><td>如果结果集是空的，那么在存储单元pDest-&gt;iSDParm 中存储一个1   </td>
+</tr></p>
+<p><tr></p>
+<p><td>SRT_Discard</td></p>
+<p><td>丢弃结果</td>
+</tr>
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）该函数还用于返回错误数，如果有错误的话，那么一个恰当的错误信息就被留在pParse-&gt;zErrMsg中。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）该函数没有释放进入的select 结构，而回叫函数则需要释放select 结构。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）该函数中声明了很多变量，这些变量中有数据库的连接，与select语句有关的聚合信息，如order by子句，group by子句等。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>3．sqlite3WhereBegin</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pTabList是由分析器对FROM部分生成的语法树，它包含FROM中表的信息；pWhere是WHERE部分的语法树，它包含WHERE中所有表达式的信息；ppOrderBy 对应ORDER BY子句(暂不考虑)。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sqlite的查询优化做得简单又精致。在一个简单的sqlite3WhereBegin函数中，完成所有的优化处理。查询优化的基本理念就是嵌套循环(nested loop)，select语句的FROM子句的每个表对应一层循环(INSERT和UPDATE对应只有一个表SELECT语句)。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pTabList 用于扫描所有的表，有三种基本的扫描策略：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1)全表扫描，这种情况通常出现在没有WHERE子句时；
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)基于索引扫描，这种情况通常出现在表有索引，而且WHERE中的表达式又能够使用该索引的情况；<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)基本rowid的扫描，这种情况通常出现在WHERE表达式中含有rowid的条件。该情况实际上也是对表进行的扫描。可以说，Sqlite以rowid为聚簇索引。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数sqlite3WhereBegin的具体参数如表3.4所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.4  sqlite3WhereBegin的具体参数</strong><br></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pParse</td></p>
+<p><td>语义分析</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pTabList</td></p>
+<p><td>扫描的所有表</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pWhere</td></p>
+<p><td>where部分语法树</td>
+</tr></p>
+<p><tr></p>
+<p><td>**ppOrderBy</td></p>
+<p><td>一个order by语句，或者为空</td>
+</tr></p>
+<p><tr></p>
+<p><td>wctrlFlags</td></p>
+<p><td>一个在sqliteInt.h定义的WHERE_ 标志</td>
+</tr>
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>4．selectInnerLoop</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数selectInnerLoop的作用该函数主要生成输出结果列的opcode。如果srcTab和nColumn都是零，那么pEList表达式为了获得行数据进行赋值。如果nColumn&gt;0 那么数据从srcTab中拉出，pEList只用于从每一列获得数据类型。selectInnerLoop的主要说明如表3.5所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.5  selectInnerLoop的参数及说明</strong><br></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>*p</td></p>
+<p><td>完整的select语句被编码</td>
+</tr></p>
+<p><tr></p>
+<p><td>srcTab</td></p>
+<p><td>如果不是NULL，使用这个key对结果进行排序</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pOrderBy</td></p>
+<p><td>如果不是NULL，使用这个key对结果进行排序</td>
+</tr></p>
+<p><tr></p>
+<p><td>distinct</td></p>
+<p><td>如果&gt;=0，确保结果是不同的</td>
+</tr></p>
+<p><tr></p>
+<p><td>hasDistinct</td></p>
+<p><td>如果distinct关键字存在返回true</td>
+</tr></p>
+<p><tr></p>
+<p><td>codeOffset(v, p, iContinue)</td></p>
+<p><td>添加代码来实现offset</td>
+</tr></p>
+<p><tr></p>
+<p><td>sqlite3ExprCodeExprList</td></p>
+<p><td>生成代码，将给定的表达式列表的每个元素的值放到寄存器开始的目标序列。返回元素评估的数量</td>
+</tr></p>
+<p><tr></p>
+<p><td>sqlite3ReleaseTempReg</td></p>
+<p><td>释放寄存器，使其可以从用于其他目的。如果一个寄存器当前被用于列缓存，则dallocation被推迟，直到使用的列寄存器变的陈旧</td>
+</tr></p>
+<p><tr></p>
+<p><td>defined(SQLITE_OMIT_TRIGGER)</td></p>
+<p><td>丢弃结果。这是用于触发器的select语句。这样选择的目的是要调用用户定义函数。我们不关心实际的选择结果。</td>
+</tr></p>
+<p><tr></p>
+<p><td>if( pOrderBy==0 &amp;&amp; p-&gt;iLimit )</td></p>
+<p><td>如果limit到达，跳转到循环结束。除了，如果有一个分选机，在这种情况下分选机已经限制了我们的输出</td>
+</tr></p>
+<p><table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>5．sqlite3WhereEnd</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要完成嵌套循环的收尾工作的opcode生成，为每层循环生成OP_Next/OP_Prev，以及关闭表和索引游标的OP_Close。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>6. flattenSubquery</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;函数flattenSubquery主要实现子查询扁平化。显然对于一个比较复杂的查询，如果满足上面的条件时对这个查询语句进行扁平化处理后就可以实现对查询的优化。函数flattenSubquery具体解释如表3.6如下。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>表3.6  flattenSubquery的参数及说明</strong></p>
+<p><table></p>
+<p><tr></p>
+<p><td>参数</td></p>
+<p><td>说明</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pSub</td></p>
+<p><td>内部查询或“子查询”</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pSub1</td></p>
+<p><td>指针移到子查询最右边的选择</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pSrc</td></p>
+<p><td>子句的外部查询</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pSubSrc</td></p>
+<p><td>子句的子查询</td>
+</tr></p>
+<p><tr></p>
+<p><td>*pList</td></p>
+<p><td>外部查询的结果集</td>
+</tr></p>
+<p><tr></p>
+<p><td>iParent</td></p>
+<p><td>结果集临时表的VDBE光标数字</td>
+</tr></p>
+<p><tr></p>
+<p><td>assert( p-&gt;pPrior==0 )</td></p>
+<p><td>无法展平复合查询</td>
+</tr>
+</table>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>7. SelectExpand</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此函数功能为此例程可以扩展一个SELECT语句及其所有子查询。对于意味着“扩大”一个SELECT语句的附加信息,请参阅上面selectexpand工人回调的评论。扩大一个SELECT语句是处理SELECT语句的第一步。SELECT语句在执行名称解析之前必须扩大。如果出现任何错误,错误消息被写入pparse，调用函数可以通过看pParse-&gt;nErr和/或pParse-&gt;db-&gt;mallocFailed来检测问题。代码如下所示。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static void sqlite3SelectExpand(Parse <em>pParse, Select </em>pSelect){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Walker w;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  w.xSelectCallback = selectExpander;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  w.xExprCallback = exprWalkNoop;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  w.pParse = pParse;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sqlite3WalkSelect(&amp;w, pSelect);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>8．selectExpander</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectExpander函数功能为：把一个Walker回调“扩大”为一个SELECT语句。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 确保vdbe光标号已分配给每个 FROM子句的元素。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2) 在定义FROM子句的SrcList中填写 pTabList-&gt;a[].pTab字段。当视图出现在From子句时，填写ptablist-&gt;[].pselect，用SELECT语句的副本实现了视图。一个副本是由视图的SELECT语句形成的，以便我们可以自由地修改或删除该语句，而不用担心破坏了这个视图的持久性。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (3) 添加到WHERE子句以适应在链接上的自然关键字和ON以及USING链接子句。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (4) 扫描结果集(pelist)的列表来查找&quot;<em>&quot;操作或TABLE.</em>操作的实例。如果找到,展开每个&quot;<em>&quot;作为每个表格的每一列，每一个TABLE.</em>作为TABLE的每一列。</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../srcAnaly/lowAnaly.html" class="navigation navigation-prev " aria-label="Previous page: 浅析几个函数"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../srcAnaly/otherFunc.html" class="navigation navigation-next " aria-label="Next page: 其它一些函数的功能"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

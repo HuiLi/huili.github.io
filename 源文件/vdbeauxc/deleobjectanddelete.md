@@ -1,0 +1,4 @@
+# 函数sqlite3VdbeDeleteObject和sqlite3VdbeDelete
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;将函数sqlite3VdbeDeleteObject的第二个参数关联Vdbe结构相关的资源全部释放掉。sqlite3VdbeDeleteObject和sqlite3VdbeDelete最大的不同在于：VdbeDelete仅仅是将从VMs列表和与之对应的数据库连接断开。在sqlite3VdbeDelete中需要
+sqlite3VdbeDeleteObject来释放相应的数据资源。

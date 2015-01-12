@@ -48,7 +48,6 @@
    * [测试数据](codedebug/testdata.md)
    * [测试结果](codedebug/testresult.md)
 * [Summary总结](summary/READMEG13.md)
-
 * [Introduction](READMEG14.md)
 * [SQLite源码分析报告](sqlitereport/README.md)
    * [小组成员及分工](sqlitereport/group.md)

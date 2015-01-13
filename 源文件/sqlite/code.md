@@ -1,0 +1,2 @@
+#代码code发生器
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在剖析器收集完符号并把之转换成完全的SQL语句时，它调用代码产生器来产生虚拟的机器代码，这些机器代码将按照SQL语句的要求来工作。在代码产生器中有许多文件； attach.c, auth.c, build.c, delete.c, expr.c, insert.c, pragma.c, select.c, trigger.c, update.c, vacuum.c and where.c. 正是在这些文件中，最具有重要意义的事情发生了。 expr.c 处理表达式代码的生成。 where.c 处理SELECT, UPDATE and DELETE语句中WHERE子句的代码的生成。文件 attach.c, delete.c, insert.c, select.c, trigger.c update.c,和vacuum.c处理SQL语句中具有同样名字的语句的代码的生成。(每个文件调用expr.c and where.c中的程序） All other 所有SQL的其它语句的代码是由build.c生成的。文件auth.c 执行sqlite3_set_authorizer()的功能.

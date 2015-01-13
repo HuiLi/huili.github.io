@@ -1,0 +1,9 @@
+# POSIX locking
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSIX locking（POSIX咨询锁）主要依靠设计。ANSI标准1003.1(1996)部分6.5.2.2 的483到490行规定，当一个进程设置或者清除一个锁的时候，这个操作将会覆盖任何之前由相同进程设置的锁。它并没有明确地说明，但是这意味着它将覆盖通过同一进程使用一个不同的文件描述符设置的锁。例如：<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int fd1 = open("./file1"， O\_RDWR|O\_CREAT， 0644);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int fd2 = open("./file2"， O\_RDWR|O\_CREAT， 0644);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设./file1和./file2实际上是同一个文件（因为一个是硬链接或符号链接到另一个），然后如果你在fd1设置排它锁，然后试图在fd2获得排它锁。根据它的工作原理，可以预期第二锁定失败，因为由于fd1文件已经锁定。但结果却不是这样的。因为锁来自相同的进程，第二个覆盖了第一个，尽管他们在不同的文件名打开的不同的文件描述符上。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出现这种情况意味着我们不能使用 POSIX 锁来同步竞争同一进程的线程之间的文件访问。POSIX锁可以同步不同进程的线程的访问，但不能同步同一进程的线程访问。若想解决这一问题，SQLite必须在其内部管理文件锁定。每当打开一个新的数据库，我们必须找到特定的数据库文件的i节点（这个i节点由st\_dev和st\_ino字段的统计结构的fstat()函数填写），并且检查这个锁已经存在在这个i节点上了。当创建或删除锁，我们要看看我们自己内部的锁记录，看是否有另一个线程先在相同的i节点上设置了锁。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSIX的sqlite3_file结构不再仅仅是一个整型的文件描述符。它现在是一个包含整型的文件描述符和指向描述内部相应的i节点上的锁的结构的指针。每个i节点有一个锁结构，所以如果同一个inode打开两次，两个unixFile结构指向同一个锁结构。锁定结构保持引用计数(因此，我们将知道什么时候删除它)并且“cnt”字段告诉我们其内部锁状态。 cnt==0意味着文件没有加锁。cnt=-1意味着文件上有一个排它锁。cnt>0意味着该文件上有cnt共享锁。任何企图要锁定或解锁文件首先要检查锁结构。如果内部锁结构在锁定和解除锁定的状态之间转换，才会调用 fcntl() 系统调用设置 POSIX 锁。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但POSIX 咨询锁还是存在一些问题。如果你关闭一个指向已锁定的文件的文件描述符，由当前进程对该文件的设置的所有锁都会释放。为了解决这个问题，每个 unixInodeInfo 对象维护在该i节点上挂起的锁的数目的计数。当试图关闭一个unixFile，如果在在该持有锁的i节点上有其他unixFile打开，close()关闭文件描述符的调用将推迟，直到所有的锁都清除。unixInodeInfo结构体保存一个需要关闭的文件描述符列表，并且最后一个锁清除时该列表也将移除（清除）。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;另外一个问题是LinuxThreads不能与posix locks很好地工作。许多旧版本的linux使用LinuxThreads库是不兼容posix的。在LinuxThreads下，线程A创建的锁不能由线程B修改或者重写。只有线程A可以修改这个锁。如果应用程序在Linux上使用新的本机Posix线程库（NPTL），锁定行为是正确的，使用NPTL线程A创建的锁可以重写线程B中的锁。但是没有办法知道在编译时使用的是哪一种线程库。 所以没有办法知道在编译时线程A是否可以重写线程B上的锁。必需在运行时检查发现当前进程的行为。

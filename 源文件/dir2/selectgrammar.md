@@ -1,5 +1,5 @@
 # SELECT的语法图
- <img src="../select1.png"/>
+ <img src="../image/select1.png"/>
  上图只是语法的书写顺序，而select的执行顺序：
 1.	  FROM
 2.	  ON

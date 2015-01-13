@@ -21,3 +21,5 @@
 	  SelectDest *pDest,      /*处理结果集*/
  	  int iContinue,          /*跳过此处到下一行*/
 	)</pre>
+
+<img src="../image/addWhereTerm.png">

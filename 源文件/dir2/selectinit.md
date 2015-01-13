@@ -38,6 +38,8 @@ int sqlite3Select(
 	  Expr *pLimit,         /*声明一个表达式放Limit子句表达式 */
 	  Expr *pOffset         /*声明一个表达式放Offset偏移量子句表达式*/
 	)</pre>
+	<img src="../image/sqlite3selectnew.png">
+
 <br><br>sqlite3SelectDestInit函数：处理SELECT结果集，主要和VEDB交互。
 <pre>void sqlite3SelectDestInit(SelectDest *pDest, int eDest, int iParm){
 	  pDest->eDest = (u8)eDest;/*u8是一个无符号字型，eDest是为了处理select操作结果*/

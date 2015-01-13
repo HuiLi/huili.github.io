@@ -7,6 +7,6 @@
 <br>4    d     null
 <br>5    e     19
 <br>使用两个20，只会输出一个。NULL值（这个一般不确定，这里验证一下）会被输出一个空。如下图：
-<img src="../distinct1.png"/>
+<img src="../image/distinct1.png"/>
 <br>（2）如果使用all 会全部输出，如下图：
-<img src="../distinct2.png"/>
+<img src="../image/distinct2.png"/>

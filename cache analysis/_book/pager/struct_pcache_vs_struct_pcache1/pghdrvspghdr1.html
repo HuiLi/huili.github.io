@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="..\../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Struct PgHdr 与Struct PgHdr1 | Book Example</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="..\../pager/struct_pghdr_1struct_pcache1/pghdr1andpcache1.html" />
+    
+    
+    <link rel="prev" href="..\../pager/struct_pcachestruct_pcach1/pcahcevspcache1.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="0.1.3.2" data-basepath="..\.." data-revision="1421080590227">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/null" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="..\../" >Book Example</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+
+        
+
+        
+
+	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="..\../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="0.1" data-path="pager/pagecache.html">
+            
+                
+                    <a href="..\../pager/pagecache.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                         页面缓冲管理
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="0.1.1" data-path="pager/cachemanage.html">
+            
+                
+                    <a href="..\../pager/cachemanage.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.1.</b>
+                        
+                         缓存管理
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.2" data-path="pager/cacheorg.html">
+            
+                
+                    <a href="..\../pager/cacheorg.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.2.</b>
+                        
+                         缓存组织
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.3" data-path="pager/cache.html">
+            
+                
+                    <a href="..\../pager/cache.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.</b>
+                        
+                          cache具体结构
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="0.1.3.1" data-path="pager/struct_pcachestruct_pcach1/pcahcevspcache1.html">
+            
+                
+                    <a href="..\../pager/struct_pcachestruct_pcach1/pcahcevspcache1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.1.</b>
+                        
+                         Struct PCache与Struct PCach1
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="0.1.3.2" data-path="pager/struct_pcache_vs_struct_pcache1/pghdrvspghdr1.html">
+            
+                
+                    <a href="..\../pager/struct_pcache_vs_struct_pcache1/pghdrvspghdr1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.2.</b>
+                        
+                         Struct PgHdr 与Struct PgHdr1
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.3.3" data-path="pager/struct_pghdr_1struct_pcache1/pghdr1andpcache1.html">
+            
+                
+                    <a href="..\../pager/struct_pghdr_1struct_pcache1/pghdr1andpcache1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.3.</b>
+                        
+                         struct PgHdr1与struct PCache1
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.3.4" data-path="pager/cache/cachestucture.html">
+            
+                
+                    <a href="..\../pager/cache/cachestucture.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.4.</b>
+                        
+                         cache内存结构
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.3.5" data-path="pager/struct_pgroupstruct_pcacheglobal/pgroupandpcacheglobal.html">
+            
+                
+                    <a href="..\../pager/struct_pgroupstruct_pcacheglobal/pgroupandpcacheglobal.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.3.5.</b>
+                        
+                         Struct PGroup与Struct PCacheGlobal
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.1.4" data-path="pager/summary.html">
+            
+                
+                    <a href="..\../pager/summary.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.4.</b>
+                        
+                         总结
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 60%;min-width: 50%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="..\../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="..\../pager/pagecache.html" title="页面缓冲管理" class="chapter done " data-progress="0.1" style="left: 10%;"></a>
+    
+        <a href="..\../pager/cachemanage.html" title="缓存管理" class="chapter done " data-progress="0.1.1" style="left: 20%;"></a>
+    
+        <a href="..\../pager/cacheorg.html" title="缓存组织" class="chapter done " data-progress="0.1.2" style="left: 30%;"></a>
+    
+        <a href="..\../pager/cache.html" title=" cache具体结构" class="chapter done " data-progress="0.1.3" style="left: 40%;"></a>
+    
+        <a href="..\../pager/struct_pcachestruct_pcach1/pcahcevspcache1.html" title="Struct PCache与Struct PCach1" class="chapter done " data-progress="0.1.3.1" style="left: 50%;"></a>
+    
+        <a href="..\../pager/struct_pcache_vs_struct_pcache1/pghdrvspghdr1.html" title="Struct PgHdr 与Struct PgHdr1" class="chapter done " data-progress="0.1.3.2" style="left: 60%;"></a>
+    
+        <a href="..\../pager/struct_pghdr_1struct_pcache1/pghdr1andpcache1.html" title="struct PgHdr1与struct PCache1" class="chapter  " data-progress="0.1.3.3" style="left: 70%;"></a>
+    
+        <a href="..\../pager/cache/cachestucture.html" title="cache内存结构" class="chapter  " data-progress="0.1.3.4" style="left: 80%;"></a>
+    
+        <a href="..\../pager/struct_pgroupstruct_pcacheglobal/pgroupandpcacheglobal.html" title="Struct PGroup与Struct PCacheGlobal" class="chapter  " data-progress="0.1.3.5" style="left: 90%;"></a>
+    
+        <a href="..\../pager/summary.html" title="总结" class="chapter  " data-progress="0.1.4" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_233">
+                    
+                        <h1 id="struct-pghdr-struct-pghdr1">Struct PgHdr 与Struct PgHdr1</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Struct PgHdr VS Struct PgHdr 1：Struct PgHdr 是页面的头部，用来控制缓冲区中页面；Struct PgHdr1每个缓冲区入口，可以大致理解为：通过它，可以获得数据库页面的渠道。
+    <img src="../../p33.png"/>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图 3.3 Struct PgHdr源码截图
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PgHdr只对页面调度程序模块可见，对B+树模块和更高层次的模块均不可见。该页面头有很多控制变量。Pgno变量确定了它所描述的数据库页面的页面号。如果页面被写入到回退日志中，injournal变量就是真。如果日志在回写该页面到数据库文件前需要刷新，needSync就是真。(文件上的刷新将文件更改的部分传递到磁面上。)如果页面被修改了，并且新值还没写回到数据库文件中，dirty变量就是true。如果页面在当前状态的日志中，inStmt变量就是真。在页面上的nRef变量就是引用计数。如果nRef的值比0大，那么页面在用，并且我们也称页面被固定；反之，页面未固定而且空闲。pNextFree和pPrevFree用来连接所有的空闲页。pDirty指针连接了所有的脏页面。另，一个空闲页面也可能是脏页面。
+ <img src="../../p34.png"/>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图 3.4 Struct PgHdr1源码截图</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="..\../pager/struct_pcachestruct_pcach1/pcahcevspcache1.html" class="navigation navigation-prev " aria-label="Previous page: Struct PCache与Struct PCach1"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="..\../pager/struct_pghdr_1struct_pcache1/pghdr1andpcache1.html" class="navigation navigation-next " aria-label="Next page: struct PgHdr1与struct PCache1"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

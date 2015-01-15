@@ -1,0 +1,577 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="./manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Pager在SQLite中的地位及作用 | Pager</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.0">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="./pager.html" />
+    
+    
+    <link rel="prev" href="./index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="0.1" data-basepath="." data-revision="1421113562133">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/null" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="./" >Pager</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+
+        
+
+        
+
+	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Pager
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="0.1" data-path="pagersqlite.html">
+            
+                
+                    <a href="./pagersqlite.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.1.</b>
+                        
+                         Pager在SQLite中的地位及作用
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2" data-path="pager.html">
+            
+                
+                    <a href="./pager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.</b>
+                        
+                         Pager概述
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="0.2.1" data-path="21.html">
+            
+                
+                    <a href="./21.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.1.</b>
+                        
+                         Pager状态
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.2" data-path="22.html">
+            
+                
+                    <a href="./22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.2.</b>
+                        
+                         Pager的数据库文件页
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.3" data-path="23.html">
+            
+                
+                    <a href="./23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.3.</b>
+                        
+                         Pager的相关参数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.4" data-path="24.html">
+            
+                
+                    <a href="./24.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.4.</b>
+                        
+                         页面类型
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.5" data-path="25.html">
+            
+                
+                    <a href="./25.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.5.</b>
+                        
+                         Pager的状态
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.6" data-path="26.html">
+            
+                
+                    <a href="./26.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.6.</b>
+                        
+                         Pager的结构
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.7" data-path="27.html">
+            
+                
+                    <a href="./27.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.7.</b>
+                        
+                         日志
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.8" data-path="28.html">
+            
+                
+                    <a href="./28.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.8.</b>
+                        
+                         页面缓存
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.2.9" data-path="29.html">
+            
+                
+                    <a href="./29.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.2.9.</b>
+                        
+                         锁机制
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3" data-path="sqlitepager.html">
+            
+                
+                    <a href="./sqlitepager.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.</b>
+                        
+                         SQLite中Pager的运行流程概述
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="0.3.1" data-path="31.html">
+            
+                
+                    <a href="./31.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.1.</b>
+                        
+                         打开/关闭一个页面连接
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.2" data-path="32.html">
+            
+                
+                    <a href="./32.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.2.</b>
+                        
+                         配置页面对象的函数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.3" data-path="33.html">
+            
+                
+                    <a href="./33.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.3.</b>
+                        
+                         获取和释放页面引用的函数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.4" data-path="34.html">
+            
+                
+                    <a href="./34.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.4.</b>
+                        
+                         对页面引用的操作
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.5" data-path="35.html">
+            
+                
+                    <a href="./35.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.5.</b>
+                        
+                         管理页面事务和保存点的函数
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.6" data-path="36.html">
+            
+                
+                    <a href="./36.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.6.</b>
+                        
+                         查询页面状态/配置
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.7" data-path="37.html">
+            
+                
+                    <a href="./37.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.7.</b>
+                        
+                         截断数据库文件
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="0.3.8" data-path="38.html">
+            
+                
+                    <a href="./38.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>0.3.8.</b>
+                        
+                         测试/调试
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 5%;min-width: 0%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="./index.html" title="Pager" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="./pagersqlite.html" title="Pager在SQLite中的地位及作用" class="chapter done " data-progress="0.1" style="left: 5%;"></a>
+    
+        <a href="./pager.html" title="Pager概述" class="chapter  " data-progress="0.2" style="left: 10%;"></a>
+    
+        <a href="./21.html" title="Pager状态" class="chapter  " data-progress="0.2.1" style="left: 15%;"></a>
+    
+        <a href="./22.html" title="Pager的数据库文件页" class="chapter  " data-progress="0.2.2" style="left: 20%;"></a>
+    
+        <a href="./23.html" title="Pager的相关参数" class="chapter  " data-progress="0.2.3" style="left: 25%;"></a>
+    
+        <a href="./24.html" title="页面类型" class="chapter  " data-progress="0.2.4" style="left: 30%;"></a>
+    
+        <a href="./25.html" title="Pager的状态" class="chapter  " data-progress="0.2.5" style="left: 35%;"></a>
+    
+        <a href="./26.html" title="Pager的结构" class="chapter  " data-progress="0.2.6" style="left: 40%;"></a>
+    
+        <a href="./27.html" title="日志" class="chapter  " data-progress="0.2.7" style="left: 45%;"></a>
+    
+        <a href="./28.html" title="页面缓存" class="chapter  " data-progress="0.2.8" style="left: 50%;"></a>
+    
+        <a href="./29.html" title="锁机制" class="chapter  " data-progress="0.2.9" style="left: 55%;"></a>
+    
+        <a href="./sqlitepager.html" title="SQLite中Pager的运行流程概述" class="chapter  " data-progress="0.3" style="left: 60%;"></a>
+    
+        <a href="./31.html" title="打开/关闭一个页面连接" class="chapter  " data-progress="0.3.1" style="left: 65%;"></a>
+    
+        <a href="./32.html" title="配置页面对象的函数" class="chapter  " data-progress="0.3.2" style="left: 70%;"></a>
+    
+        <a href="./33.html" title="获取和释放页面引用的函数" class="chapter  " data-progress="0.3.3" style="left: 75%;"></a>
+    
+        <a href="./34.html" title="对页面引用的操作" class="chapter  " data-progress="0.3.4" style="left: 80%;"></a>
+    
+        <a href="./35.html" title="管理页面事务和保存点的函数" class="chapter  " data-progress="0.3.5" style="left: 85%;"></a>
+    
+        <a href="./36.html" title="查询页面状态/配置" class="chapter  " data-progress="0.3.6" style="left: 90%;"></a>
+    
+        <a href="./37.html" title="截断数据库文件" class="chapter  " data-progress="0.3.7" style="left: 95%;"></a>
+    
+        <a href="./38.html" title="测试/调试" class="chapter  " data-progress="0.3.8" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_48">
+                    
+                        <h1 id="pagersqlite">Pager在SQLite中的地位及作用</h1>
+<p><img src="lj1.png">
+图一：SQLite体系结构</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图一是SQLite官网对SQLite体系结构的描述，在SQLite实现中，无论是代码的设计还是数据结构的设计都是按上述体系结构完成的，层次非常清晰。SQLite分为三部分，有Core（这个里面包含Compiler），Backend和Accessories，而Pager部分就在Backend里面，当数据库文件被打开，并且创建一个B-Tree之后，Pager就开始工作。分配并初始化一个新Pager对象，将其指针放到ppPager。该pager会在调用sqlite3PagerClose()时被释放。zFilename参数是要打开的数据库文件的路径。如果zFilename为空，创建随机文件名的文件。如果zFilename为&quot;:memory:&quot;，所有信息都放到缓冲区中，不会被写入磁盘。这用来实现内存数据库。如果pager对象已分配且指定文件打开成功，返回SQLITE_OK并将ppPager指向新pager对象。如果有错误发生，*ppPager置空并返回错误代码。Pager的执行过程是先申请空间，再调用sqlite3OsOpen()打开文件（如果需要），再根据打开的文件设置内存。</p>
+<p><img src="lj2.png"></p>
+<p>图2 SQLite内存数据结构</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图二其实就是SQLite中一个整体的运行流程，Pager部分其实就是页面缓存的子系统的实现。Pager用于访问数据库磁盘文件，它通过使用独立于数据库文件的日志文件来实现原子事务的提交和回滚。页面还实现了文件锁,以防止两个进程同时写相同的数据库文件,或者当一个进程从数据库中读的时候另一个在写。同时当使用一个回滚日志时要保持不变性，当编译synchronous=OFF时，页面被认为是一旦写下来就自动同步；否则直到VFS的xSync方法在包含页面的文件上被成功调用，页面才会同步。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./index.html" class="navigation navigation-prev " aria-label="Previous page: Pager"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./pager.html" class="navigation navigation-next " aria-label="Next page: Pager概述"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

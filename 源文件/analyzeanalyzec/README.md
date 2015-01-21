@@ -1,1 +1,2 @@
-# ANALYZE命令的处理（analyze.c文件源码解析）
+# analyze.c分析）
+analyze.c主要用来处理SQL语句。

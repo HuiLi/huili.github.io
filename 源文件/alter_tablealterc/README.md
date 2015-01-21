@@ -1,2 +1,3 @@
-# 实现修改表功能ALTER TABLE（alter.c的源码分析）
+# alter.c分析
+alter.c主要实现了表的修改功能。如对表进行重命名，修改表定义等。
 

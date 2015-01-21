@@ -1,14 +1,25 @@
 #  Build.c实现的功能
-（1）表的创建
-（2）表的删除
-（3）索引的创建
-（4）索引的删除
-（5）视图的创建
-（6）ID序列的创建
-（7）ID序列的删除
-（8）事务的开始
-（9）事务的提交
-（10）事务的回滚
+Build.c属于代码生成器部分，处理以下语法：
+<br>
+CREATE TABLE<br>
+DROP TABLE<br>
+CREATE INDEX<br>
+DROP INDEX<br>
+
+creating ID lists<br>
+BEGIN TRANSACTION<br>
+COMMIT<br>
+ROLLBACK<br>
+（1）表的创建<br>
+（2）表的删除<br>
+（3）索引的创建<br>
+（4）索引的删除<br>
+（5）视图的创建<br>
+（6）ID序列的创建<br>
+（7）ID序列的删除<br>
+（8）事务的开始<br>
+（9）事务的提交<br>
+（10）事务的回滚<br>
 用到的函数有如下所示：
 
 Sqlite3BeginParse
@@ -75,20 +86,4 @@ reindexDatabases
 
 Sqlite3Reindex
 
-Build.c属于代码生成器部分，处理以下语法：
 
-CREATE TABLE
-
-DROP TABLE
-
-CREATE INDEX
-
-DROP INDEX
-
-creating ID lists
-
-BEGIN TRANSACTION
-
-COMMIT
-
-ROLLBACK

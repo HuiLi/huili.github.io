@@ -1,6 +1,6 @@
 # ISNULL
 <P>
-<img src="pic10.JPG"/>
+<img src="pic10.png"/>
 <P>
 ISNULL使用指定的替换值替换NULL
 语法:

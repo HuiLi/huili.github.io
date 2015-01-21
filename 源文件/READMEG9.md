@@ -1,4 +1,4 @@
-# SQLite源码分析报告-vdbe.c文件
+# vdbe.c分析
 
 
 ##Abstract

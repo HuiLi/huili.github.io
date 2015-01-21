@@ -1,6 +1,6 @@
 # ESCAPE
 <P>
-<img src="pic5.JPG"/>
+<img src="pic5.png"/>
 <p>
 ESCAPE用于转译：
 select * from test where name like ‘_%%’;
@@ -12,5 +12,5 @@ REGEXP匹配被测试值的开头与结尾，在模式开始处使
 用’^’，在模式的结尾用’$’
 
 <P>
-<img src="pic6.JPG"/>
+<img src="pic6.png"/>
 <P>

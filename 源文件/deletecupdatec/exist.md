@@ -1,6 +1,6 @@
 # EXISTS
 <P>
-<img src="pic12.JPG"/>
+<img src="pic12.png"/>
 <P>
 EXISTS(包括NOT EXIST) 子句根据子查询语句的结
 果集空或非空返回一个布尔值

@@ -1,6 +1,6 @@
 # between
 <P>
-<img src="pic11.JPG"/>
+<img src="pic11.png"/>
 <P>
 操作符BETWEEN…AND在where子句中使用，作用是介于两
 个值之间的数据范围

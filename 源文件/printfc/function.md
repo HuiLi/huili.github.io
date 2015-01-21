@@ -1,0 +1,2 @@
+#函数功能
+该部分主要介绍了et_getdigit、sqlite3appendspace、sqlite3vxprintf 3个函数的功能。

@@ -1,4 +1,4 @@
-# vdbemem.c(陈万里)
+# vdbemem.c
 在vdbemem.c中包含了对结构体"Mem"的操作函数。在SQLite内部，vdbe用"Mem"结构来操作几乎所有的SQL值：字符串，整数，实数，二进制数，数据行，函数等等。每个Mem结构代表一个值，而在外部接口用结构体sqlite_value代表Mem结构。
 
 ## 3.1.用于形式转化的操作函数 

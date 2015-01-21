@@ -1,10 +1,10 @@
 # SqliteLimite.h 数据库源码分析报告
-&nbsp;&nbsp;&nbsp;&nbsp;这个头文件定义了SQLite能够处理的变量范围。如TEXT或者   BLOB（ BLOB(binary large object)是一个大文件，典型的BLOB是一张图片或一个声音文件）的最大字节长度，表或者索引中一行的大小等等。<br>
-&nbsp;&nbsp;&nbsp;&nbsp;这个头文件一共定义了18个宏，具体定义的宏如下：<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无参一般形式#define 标识符 字符串<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;带参一般形式#define 宏名(形参表) 字符串<br>
-&nbsp;&nbsp;&nbsp;&nbsp;被定义为“宏”的标识符称为“宏名”。在编译预处理时，对程序中所有出现的“宏名”，都用宏定义中的字符串去代换。 如：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #define PI 3.14。<br>
-&nbsp;&nbsp;&nbsp;&nbsp; ifndef，这是 if not defined的简写，是宏定义的一种，它是可以根据是否已经定义了一个变量来进行分支选择。条件指示符#ifndef 的最主要目的是防止头文件的重复包含和编译。#endif，终止if。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个头文件定义了SQLite能够处理的变量范围。如TEXT或者   BLOB（ BLOB(binary large object)是一个大文件，典型的BLOB是一张图片或一个声音文件）的最大字节长度，表或者索引中一行的大小等等。<br>
+这个头文件一共定义了18个宏，具体定义的宏如下：<br>
+无参一般形式#define 标识符 字符串<br>
+带参一般形式#define 宏名(形参表) 字符串<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被定义为“宏”的标识符称为“宏名”。在编译预处理时，对程序中所有出现的“宏名”，都用宏定义中的字符串去代换。 如：<br> #define PI 3.14
+<br>#ifndef，这是 if not defined的简写，是宏定义的一种，它是可以根据是否已经定义了一个变量来进行分支选择。条件指示符#ifndef 的最主要目的是防止头文件的重复包含和编译。#endif，终止if。<br>
 undef ，是在后面取消以前定义的宏定义。<br>
 
 1.	SQLITE_MAX_LENGTH  最大长度；

@@ -1,2 +1,2 @@
-# ÄÚ´æ·ÖÅäMalloc.c
-¸Ã²¿·ÖÖ÷Òª´ÓÌØÐÔ¡¢²âÊÔ¡¢ÅäÖÃÒÔ¼°APIËÄ¸ö·½Ãæ½éÉÜMalloc.cÎÄ¼þ,×îºó½øÐÐÁË×Ü½á¡£
+#Malloc.cå†…å­˜åˆ†é…
+è¯¥éƒ¨åˆ†ä¸»è¦ä»Žç‰¹æ€§ã€æµ‹è¯•ã€é…ç½®ä»¥åŠAPIå››ä¸ªæ–¹é¢ä»‹ç»Malloc.cæ–‡ä»¶,æœ€åŽè¿›è¡Œäº†æ€»ç»“ã€‚
